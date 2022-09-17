@@ -1,12 +1,13 @@
-import { useState, useEffect, useCallback } from 'react';
-import { useParams } from 'react-router-dom';
+import { useState, useEffect, useCallback, Fragment } from "react";
+import { useParams } from "react-router-dom";
 
-import classes from './Comments.module.css';
-import NewCommentForm from './NewCommentForm';
-import useHttp from '../../hooks/use-http';
-import { getAllComments } from '../../lib/api';
-import LoadingSpinner from '../UI/LoadingSpinner';
-import CommentsList from './CommentsList';
+import classes from "./Comments.module.css";
+import NewCommentForm from "./NewCommentForm";
+import useHttp from "../../hooks/use-http";
+import { getAllComments } from "../../lib/api";
+import LoadingSpinner from "../UI/LoadingSpinner";
+import CommentsList from "./CommentsList";
+import { Button, Typography } from "@mui/material";
 
 const Comments = () => {
   const [isAddingComment, setIsAddingComment] = useState(false);
@@ -30,32 +31,39 @@ const Comments = () => {
 
   let comments;
 
-  if (status === 'pending') {
+  if (status === "pending") {
     comments = (
-      <div className='centered'>
+      <div className="centered">
         <LoadingSpinner />
       </div>
     );
   }
 
-  if (status === 'completed' && loadedComments && loadedComments.length > 0) {
+  if (status === "completed" && loadedComments && loadedComments.length > 0) {
     comments = <CommentsList comments={loadedComments} />;
   }
 
   if (
-    status === 'completed' &&
+    status === "completed" &&
     (!loadedComments || loadedComments.length === 0)
   ) {
-    comments = <p className='centered'>No comments were added yet!</p>;
+    comments = <p className="centered">No comments were added yet!</p>;
   }
 
   return (
-    <section className={classes.comments}>
-      <h2>User Comments</h2>
+    <Fragment>
+      <Typography variant="h4" component="h4" sx={{ textAlign: "center" }}>
+        User Comments
+      </Typography>
+
       {!isAddingComment && (
-        <button className='btn' onClick={startAddCommentHandler}>
-          Add a Comment
-        </button>
+        <Button
+          variant="outlined"
+          type="submit"
+          onClick={startAddCommentHandler}
+        >
+          Add Comment
+        </Button>
       )}
       {isAddingComment && (
         <NewCommentForm
@@ -64,7 +72,7 @@ const Comments = () => {
         />
       )}
       {comments}
-    </section>
+    </Fragment>
   );
 };
 

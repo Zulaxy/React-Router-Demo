@@ -1,8 +1,9 @@
-import { Fragment } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { Box, Button } from "@mui/material";
+import { Fragment } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 
-import QuoteItem from './QuoteItem';
-import classes from './QuoteList.module.css';
+import QuoteItem from "./QuoteItem";
+import classes from "./QuoteList.module.css";
 
 const sortQuotes = (quotes, ascending) => {
   return quotes.sort((quoteA, quoteB) => {
@@ -20,24 +21,24 @@ const QuoteList = (props) => {
 
   const queryParams = new URLSearchParams(location.search);
 
-  const isSortingAscending = queryParams.get('sort') === 'asc';
+  const isSortingAscending = queryParams.get("sort") === "asc";
 
   const sortedQuotes = sortQuotes(props.quotes, isSortingAscending);
 
   const changeSortingHandler = () => {
     navigate(location.pathname, {
-      search: `?sort=${isSortingAscending ? 'desc' : 'asc'}`,
+      search: `?sort=${isSortingAscending ? "desc" : "asc"}`,
     });
   };
 
   return (
     <Fragment>
-      <div className={classes.sorting}>
-        <button onClick={changeSortingHandler}>
-          Sort {isSortingAscending ? 'Descending' : 'Ascending'}
-        </button>
-      </div>
-      <ul className={classes.list}>
+      <Box
+        sx={{
+          width: 300,
+          height: 500,
+        }}
+      >
         {sortedQuotes.map((quote) => (
           <QuoteItem
             key={quote.id}
@@ -46,7 +47,7 @@ const QuoteList = (props) => {
             text={quote.text}
           />
         ))}
-      </ul>
+      </Box>
     </Fragment>
   );
 };

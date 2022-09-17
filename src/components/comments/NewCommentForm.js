@@ -1,9 +1,11 @@
-import { useRef, useEffect } from 'react';
+import { Button, CardContent, TextField } from "@mui/material";
+import { useRef, useEffect, Fragment } from "react";
+import CardField from "@mui/material/Card";
 
-import useHttp from '../../hooks/use-http';
-import { addComment } from '../../lib/api';
-import LoadingSpinner from '../UI/LoadingSpinner';
-import classes from './NewCommentForm.module.css';
+import useHttp from "../../hooks/use-http";
+import { addComment } from "../../lib/api";
+import LoadingSpinner from "../UI/LoadingSpinner";
+import classes from "./NewCommentForm.module.css";
 
 const NewCommentForm = (props) => {
   const commentTextRef = useRef();
@@ -13,7 +15,7 @@ const NewCommentForm = (props) => {
   const { onAddedComment } = props;
 
   useEffect(() => {
-    if (status === 'completed' && !error) {
+    if (status === "completed" && !error) {
       onAddedComment();
     }
   }, [status, error, onAddedComment]);
@@ -29,20 +31,53 @@ const NewCommentForm = (props) => {
   };
 
   return (
-    <form className={classes.form} onSubmit={submitFormHandler}>
-      {status === 'pending' && (
-        <div className='centered'>
-          <LoadingSpinner />
+    <Fragment>
+      {/* <form className={classes.form} onSubmit={submitFormHandler}>
+        {status === "pending" && (
+          <div className="centered">
+            <LoadingSpinner />
+          </div>
+        )}
+        <div className={classes.control} onSubmit={submitFormHandler}>
+          <label htmlFor="comment">Your Comment</label>
+          <textarea id="comment" rows="5" ref={commentTextRef}></textarea>
         </div>
-      )}
-      <div className={classes.control} onSubmit={submitFormHandler}>
-        <label htmlFor='comment'>Your Comment</label>
-        <textarea id='comment' rows='5' ref={commentTextRef}></textarea>
-      </div>
-      <div className={classes.actions}>
-        <button className='btn'>Add Comment</button>
-      </div>
-    </form>
+        <div className={classes.actions}>
+          <button className="btn">Add Comment</button>
+        </div>
+      </form> */}
+
+      <CardField sx={{ maxWidth: 500 }}>
+        <CardContent>
+          <form className={classes.form} onSubmit={submitFormHandler}>
+            {status === "pending" && (
+              <div className="centered">
+                <LoadingSpinner />
+              </div>
+            )}
+
+            <TextField
+              sx={{ mb: 1.5 }}
+              id="outlined-multiline-flexible"
+              label="Your Comment"
+              multiline
+              maxRows={4}
+              name="comment"
+              required
+              fullWidth
+              placeholder="Add your Comment"
+              inputRef={commentTextRef}
+            />
+            <Button
+              variant="contained"
+              type="submit"
+            >
+              Add Comment
+            </Button>
+          </form>
+        </CardContent>
+      </CardField>
+    </Fragment>
   );
 };
 
