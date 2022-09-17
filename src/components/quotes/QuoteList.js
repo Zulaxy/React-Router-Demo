@@ -1,9 +1,7 @@
-import { Box, Button } from "@mui/material";
-import { Fragment } from "react";
+import { Box } from "@mui/material";
 import { useNavigate, useLocation } from "react-router-dom";
 
 import QuoteItem from "./QuoteItem";
-import classes from "./QuoteList.module.css";
 
 const sortQuotes = (quotes, ascending) => {
   return quotes.sort((quoteA, quoteB) => {
@@ -25,19 +23,15 @@ const QuoteList = (props) => {
 
   const sortedQuotes = sortQuotes(props.quotes, isSortingAscending);
 
-  const changeSortingHandler = () => {
-    navigate(location.pathname, {
-      search: `?sort=${isSortingAscending ? "desc" : "asc"}`,
-    });
-  };
+  // const changeSortingHandler = () => {
+  //   navigate(location.pathname, {
+  //     search: `?sort=${isSortingAscending ? "desc" : "asc"}`,
+  //   });
+  // };
 
   return (
-    <Fragment>
+    
       <Box
-        sx={{
-          width: 300,
-          height: 500,
-        }}
       >
         {sortedQuotes.map((quote) => (
           <QuoteItem
@@ -48,7 +42,7 @@ const QuoteList = (props) => {
           />
         ))}
       </Box>
-    </Fragment>
+
   );
 };
 

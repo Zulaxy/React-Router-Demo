@@ -1,11 +1,9 @@
-import { Button, CardContent, TextField, Box } from "@mui/material";
+import { Button, CardContent, TextField, Box, Typography } from "@mui/material";
 import { Fragment, useRef, useState } from "react";
 
 import CardField from "@mui/material/Card";
 
-import Card from "../UI/Card";
 import LoadingSpinner from "../UI/LoadingSpinner";
-import classes from "./QuoteForm.module.css";
 
 const QuoteForm = (props) => {
   const [isEntering, setIsEntering] = useState(false);
@@ -33,41 +31,22 @@ const QuoteForm = (props) => {
 
   return (
     <Fragment>
-      {/* <Card>
-        <form
-          onFocus={formFocusedHandler}
-          className={classes.form}
-          onSubmit={submitFormHandler}
-        >
-          {props.isLoading && (
-            <div className={classes.loading}>
-              <LoadingSpinner />
-            </div>
-          )}
-
-          <div className={classes.control}>
-            <label htmlFor="author">Author</label>
-            <input type="text" id="author" ref={authorInputRef} />
-          </div>
-          <div className={classes.control}>
-            <label htmlFor="text">Text</label>
-            <textarea id="text" rows="5" ref={textInputRef}></textarea>
-          </div>
-          <div className={classes.actions}>
-            <button onClick={finishEnteringHandler} className="btn">
-              Add Quote
-            </button>
-          </div>
-        </form>
-      </Card> */}
-
-      <CardField sx={{ maxWidth: 500 }}>
+      <CardField
+        sx={{
+          width: 600,
+          padding: "1rem",
+          margin: "1rem 0",
+        }}
+      >
         <CardContent>
+          <Typography sx={{ mb: 1.5 }} variant="h3" component="h3">
+            Add a New Quote
+          </Typography>
           <form onFocus={formFocusedHandler} onSubmit={submitFormHandler}>
             {props.isLoading && (
-              <div className={classes.loading}>
+              <Box>
                 <LoadingSpinner />
-              </div>
+              </Box>
             )}
 
             <TextField
@@ -87,7 +66,7 @@ const QuoteForm = (props) => {
               id="outlined-multiline-static"
               label="Quote"
               multiline
-              rows={4}
+              rows={10}
               required
               fullWidth
               placeholder="Add your quote"
@@ -95,8 +74,13 @@ const QuoteForm = (props) => {
               inputRef={textInputRef}
             />
 
-            <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
-              
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "flex-end",
+                alignItems: "center",
+              }}
+            >
               <Button
                 variant="contained"
                 type="submit"

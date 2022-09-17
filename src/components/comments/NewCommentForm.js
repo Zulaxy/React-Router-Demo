@@ -5,7 +5,6 @@ import CardField from "@mui/material/Card";
 import useHttp from "../../hooks/use-http";
 import { addComment } from "../../lib/api";
 import LoadingSpinner from "../UI/LoadingSpinner";
-import classes from "./NewCommentForm.module.css";
 
 const NewCommentForm = (props) => {
   const commentTextRef = useRef();
@@ -47,9 +46,9 @@ const NewCommentForm = (props) => {
         </div>
       </form> */}
 
-      <CardField sx={{ maxWidth: 500 }}>
+      <CardField >
         <CardContent>
-          <form className={classes.form} onSubmit={submitFormHandler}>
+          <form onSubmit={submitFormHandler}>
             {status === "pending" && (
               <div className="centered">
                 <LoadingSpinner />
@@ -61,7 +60,7 @@ const NewCommentForm = (props) => {
               id="outlined-multiline-flexible"
               label="Your Comment"
               multiline
-              maxRows={4}
+              rows={6}
               name="comment"
               required
               fullWidth

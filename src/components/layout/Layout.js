@@ -1,14 +1,21 @@
+import { Box } from "@mui/material";
 import { Fragment } from "react";
 import AppBarMUI from "./AppBarMUI";
-
-import classes from "./Layout.module.css";
-import MainNavigation from "./MainNavigation";
 
 const Layout = (props) => {
   return (
     <Fragment>
       <AppBarMUI />
-      <main>{props.children}</main>
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+    
+        }}
+      >
+        {props.children}
+      </Box>
     </Fragment>
   );
 };

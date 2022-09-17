@@ -1,6 +1,3 @@
-import { Link } from "react-router-dom";
-import { Fragment } from "react";
-import classes from "./QuoteItem.module.css";
 
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
@@ -12,11 +9,10 @@ import { Box } from "@mui/material";
 const QuoteItem = (props) => {
   return (
     <Box
-      sx={{ display: "flex", alignItems: "center", justifyContent: "center", width: '100vh' }}
     >
       <Card
         sx={{
-          width: 500,
+          width: 600,
           padding: "1rem",
           margin: "1rem 0",
         }}

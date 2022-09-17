@@ -10,7 +10,7 @@ import { margin } from "@mui/system";
 
 const AppBarMUI = () => {
   return (
-    <Box sx={{ flexGrow: 1, height: 100, width: '100%', maxWidth: 'auto', justifyContent: "center" }}>
+    <Box sx={{ height: 100, width: '100%', maxWidth: 'auto', justifyContent: "center" }}>
       <AppBar position="sticky">
         <Toolbar>
           <IconButton

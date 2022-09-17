@@ -6,7 +6,7 @@ import NewQuote from "./pages/NewQuote";
 import NotFound from "./pages/NotFound";
 import Layout from "./components/layout/Layout";
 import Comments from "./components/comments/Comments";
-import { Button } from "@mui/material";
+import { Box, Button } from "@mui/material";
 
 function App() {
   return (
@@ -18,11 +18,11 @@ function App() {
           <Route
             path=""
             element={
-              <div className="centered">
+              <Box sx={{ display: "flex", flexDirection: 'column' }} className="centered">
                 <Link to={`comments`}>
                   <Button variant="text">Load Comments</Button>
                 </Link>
-              </div>
+              </Box>
             }
           />
           <Route path={`comments`} element={<Comments />} />

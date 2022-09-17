@@ -3,11 +3,19 @@ import { Fragment } from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
+import { Box } from "@mui/material";
 
 const HighlightedQuote = (props) => {
   return (
-    <Fragment>
-      <Card sx={{ width: 600, padding: 1 }}>
+    <Box
+    >
+      <Card
+        sx={{
+          width: 600,
+          padding: "1rem",
+          margin: "1rem 0",
+        }}
+      >
         <CardContent>
           <Typography variant="h4">{props.text}</Typography>
         </CardContent>
@@ -19,7 +27,7 @@ const HighlightedQuote = (props) => {
           {props.author}
         </Typography>
       </Card>
-    </Fragment>
+    </Box>
   );
 };
 

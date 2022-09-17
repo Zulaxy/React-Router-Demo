@@ -1,13 +1,12 @@
 import { useState, useEffect, useCallback, Fragment } from "react";
 import { useParams } from "react-router-dom";
 
-import classes from "./Comments.module.css";
 import NewCommentForm from "./NewCommentForm";
 import useHttp from "../../hooks/use-http";
 import { getAllComments } from "../../lib/api";
 import LoadingSpinner from "../UI/LoadingSpinner";
 import CommentsList from "./CommentsList";
-import { Button, Typography } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 
 const Comments = () => {
   const [isAddingComment, setIsAddingComment] = useState(false);
@@ -51,8 +50,8 @@ const Comments = () => {
   }
 
   return (
-    <Fragment>
-      <Typography variant="h4" component="h4" sx={{ textAlign: "center" }}>
+    <Box sx={{ alignItems: "center", margin: "10px 0" }}>
+      <Typography variant="h4" component="h4">
         User Comments
       </Typography>
 
@@ -72,7 +71,7 @@ const Comments = () => {
         />
       )}
       {comments}
-    </Fragment>
+    </Box>
   );
 };
 
