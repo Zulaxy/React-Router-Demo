@@ -1,8 +1,10 @@
-const FIREBASE_DOMAIN = "https://react-router-app-6f40f-default-rtdb.europe-west1.firebasedatabase.app/";
+const FIREBASE_DOMAIN =
+  "https://react-router-app-6f40f-default-rtdb.europe-west1.firebasedatabase.app";
 
 export async function getAllQuotes() {
   const response = await fetch(`${FIREBASE_DOMAIN}/quotes.json`);
   const data = await response.json();
+  console.log(data)
 
   if (!response.ok) {
     throw new Error(data.message || "Could not fetch quotes.");
@@ -20,11 +22,13 @@ export async function getAllQuotes() {
   }
 
   return transformedQuotes;
+
 }
 
 export async function getSingleQuote(quoteId) {
   const response = await fetch(`${FIREBASE_DOMAIN}/quotes/${quoteId}.json`);
   const data = await response.json();
+  
 
   if (!response.ok) {
     throw new Error(data.message || "Could not fetch quote.");
